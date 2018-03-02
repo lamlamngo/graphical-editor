@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class GraphicsEditor extends javax.swing.JFrame {
 	
-	private final int APPLET_WIDTH = 700, APPLET_HEIGHT = 500;
+	private final int FRAME_WIDTH = 700, FRAME_HEIGHT = 500;
 	private final Color initialColor = Color.red; // default color starts as red
 	
 	private Command cmd; // the command being executed
@@ -116,23 +116,11 @@ public class GraphicsEditor extends javax.swing.JFrame {
         
     		JFrame frame = new JFrame("Object-Oriented Graphical Editor");
         
-    		frame.setLayout(new GridBagLayout());
+    		frame.setLayout(new BorderLayout());
+    		frame.add(buttonPanel, BorderLayout.NORTH);
+    		frame.add(canvasPanel, BorderLayout.CENTER);
     		
-    		JTextField textFieldUserName = new JTextField(50);
-    		frame.add(textFieldUserName);
-    		
-    		JMenuBar menuBar = new JMenuBar();
-    		JMenu menuFile = new JMenu("File");
-    		JMenuItem menuItemExit = new JMenuItem("Exit");
-    		menuFile.add(menuItemExit);
-    		 
-    		menuBar.add(menuFile);
-    		 
-    		// adds menu bar to the frame
-    		frame.setJMenuBar(menuBar);
-    		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    		
-    		frame.setSize(300, 200);
+    		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
     		frame.setVisible(true);
     }
  
