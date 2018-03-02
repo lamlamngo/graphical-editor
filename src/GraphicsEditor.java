@@ -6,6 +6,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.*;
 
+import Editor.ColorIndicator;
+
 public class GraphicsEditor extends javax.swing.JFrame {
 	
 	private final int APPLET_WIDTH = 700, APPLET_HEIGHT = 500;
@@ -85,6 +87,23 @@ public class GraphicsEditor extends javax.swing.JFrame {
         editPanel.add(undoButton);
         editPanel.add(redoButton);
         
+        // The color panel is slightly different from the other two. In
+        // addition to a label and buttons for the color commands, this
+        // panel holds a ColorIndicator that gives the current default
+        // color.
+        JPanel colorPanel = new JPanel();
+        JLabel colorLabel = new JLabel("Colors:");
+        colorPanel.setLayout(new FlowLayout());
+        colorPanel.add(colorLabel);
+        colorBox = new ColorIndicator();
+        colorBox.show(initialColor);
+        redButton.setBackground(Color.yellow);
+        greenButton.setBackground(Color.yellow);
+        blueButton.setBackground(Color.yellow);
+        colorPanel.add(colorBox);
+        colorPanel.add(redButton);
+        colorPanel.add(greenButton);
+        colorPanel.add(blueButton);
         
     		JFrame frame = new JFrame("Object-Oriented Graphical Editor");
         
