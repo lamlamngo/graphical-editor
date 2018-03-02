@@ -67,6 +67,24 @@ public class GraphicsEditor extends javax.swing.JFrame {
         shapePanel.add(ellipseButton);
         shapePanel.add(lineButton);
         
+        JPanel editPanel = new JPanel(); // holds buttons for editing operations
+        JLabel editLabel = new JLabel("Edit:");
+        editPanel.setLayout(new FlowLayout());
+        editPanel.add(editLabel);
+        moveButton.setBackground(Color.yellow);
+        deleteButton.setBackground(Color.yellow);
+        frontButton.setBackground(Color.yellow);
+        backButton.setBackground(Color.yellow);
+        exchangeButton.setBackground(Color.yellow);
+        undoButton.setBackground(Color.yellow);
+        editPanel.add(moveButton);
+        editPanel.add(deleteButton);
+        editPanel.add(frontButton);
+        editPanel.add(backButton);
+        editPanel.add(exchangeButton);
+        editPanel.add(undoButton);
+        editPanel.add(redoButton);
+        
         
     		JFrame frame = new JFrame("Object-Oriented Graphical Editor");
         
