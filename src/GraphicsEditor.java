@@ -6,8 +6,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.*;
 
-import Editor.ColorIndicator;
-
 public class GraphicsEditor extends javax.swing.JFrame {
 	
 	private final int APPLET_WIDTH = 700, APPLET_HEIGHT = 500;
@@ -104,6 +102,17 @@ public class GraphicsEditor extends javax.swing.JFrame {
         colorPanel.add(redButton);
         colorPanel.add(greenButton);
         colorPanel.add(blueButton);
+        
+        // Use a grid layout to stack the button panels vertically.  Also,
+        // give them a cyan background.
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(3, 1));
+        shapePanel.setBackground(Color.cyan);
+        editPanel.setBackground(Color.cyan);
+        colorPanel.setBackground(Color.cyan);
+        buttonPanel.add(shapePanel);
+        buttonPanel.add(editPanel);
+        buttonPanel.add(colorPanel);
         
     		JFrame frame = new JFrame("Object-Oriented Graphical Editor");
         
