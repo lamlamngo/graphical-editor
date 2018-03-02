@@ -1,9 +1,25 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.*;
+
+import Editor.BackButtonListener;
+import Editor.BlueButtonListener;
+import Editor.DeleteButtonListener;
+import Editor.EllipseButtonListener;
+import Editor.ExchangeButtonListener;
+import Editor.FrontButtonListener;
+import Editor.GreenButtonListener;
+import Editor.LineButtonListener;
+import Editor.MoveButtonListener;
+import Editor.RectButtonListener;
+import Editor.RedButtonListener;
+import Editor.RedoButtonListener;
+import Editor.UndoButtonListener;
 
 public class GraphicsEditor extends javax.swing.JFrame {
 	
@@ -37,6 +53,21 @@ public class GraphicsEditor extends javax.swing.JFrame {
         JButton undoButton = new JButton("Undo");
         JButton redoButton = new JButton("Redo");
         
+        // Add listeners for all the command buttons.
+        rectButton.addActionListener(new RectButtonListener());
+        ellipseButton.addActionListener(new EllipseButtonListener());
+        lineButton.addActionListener(new LineButtonListener());
+        moveButton.addActionListener(new MoveButtonListener());
+        deleteButton.addActionListener(new DeleteButtonListener());
+        frontButton.addActionListener(new FrontButtonListener());
+        backButton.addActionListener(new BackButtonListener());
+        exchangeButton.addActionListener(new ExchangeButtonListener());
+        redButton.addActionListener(new RedButtonListener());
+        greenButton.addActionListener(new GreenButtonListener());
+        blueButton.addActionListener(new BlueButtonListener());
+        undoButton.addActionListener(new UndoButtonListener());
+        redoButton.addActionListener(new RedoButtonListener());
+        
         
     		JFrame frame = new JFrame("Object-Oriented Graphical Editor");
         
@@ -58,6 +89,137 @@ public class GraphicsEditor extends javax.swing.JFrame {
     		
     		frame.setSize(300, 200);
     		frame.setVisible(true);
+    }
+ 
+    /**
+     * What to do when rectButton is pressed.
+     */
+    private class RectButtonListener implements ActionListener {
+  	  public void actionPerformed(ActionEvent event) {
+      	cmd = new RectCmd();
+      	repaint();
+      }
+    }
+
+    /**
+     * What to do when ellipseButton is pressed.
+     */
+    private class EllipseButtonListener implements ActionListener {
+      public void actionPerformed(ActionEvent event) {
+      	cmd = new EllipseCmd();
+      	repaint();
+      }
+    }
+
+    /**
+     * What to do when lineButton is pressed.
+     */
+    private class LineButtonListener implements ActionListener {
+      public void actionPerformed(ActionEvent event) {
+      	cmd = new SegmentCmd();
+      	repaint();
+      }
+    }
+
+    private class UndoButtonListener implements ActionListener {
+  	  public void actionPerformed(ActionEvent event) {
+  		  dwg.undo();
+  		  colorBox.show(dwg.getColor());
+  		  repaint();
+  	  }
+    }
+    
+    private class RedoButtonListener implements ActionListener {
+  	  public void actionPerformed(ActionEvent even) {
+  		  dwg.redo();
+  		  colorBox.show(dwg.getColor());
+  		  repaint();
+  	  }
+    }
+    /**
+     * What to do when moveButton is pressed.
+     */
+    private class MoveButtonListener implements ActionListener {
+      public void actionPerformed(ActionEvent event) {
+      	cmd = new MoveCmd();
+      	repaint();
+      }
+    }
+
+    /**
+     * What to do when deleteButton is pressed.
+     */
+    private class DeleteButtonListener implements ActionListener {
+      public void actionPerformed(ActionEvent event) {
+      	cmd = new DeleteCmd();
+      	repaint();
+      }
+    }
+
+    /**
+     * What to do when frontButton is pressed.
+     */
+    private class FrontButtonListener implements ActionListener {
+      public void actionPerformed(ActionEvent event) {
+      	cmd = new FrontCmd();
+      	repaint();
+      }
+    }
+
+    /**
+     * What to do when backButton is pressed.
+     */
+    private class BackButtonListener implements ActionListener {
+      public void actionPerformed(ActionEvent event) {
+      	cmd = new BackCmd();
+      	repaint();
+      }
+    }
+
+    /**
+     * What to do when exchangeButton is pressed.
+     */
+    private class ExchangeButtonListener implements ActionListener {
+      public void actionPerformed(ActionEvent event) {
+      	cmd = new ExchangeCmd();
+      	repaint();
+      }
+    }
+
+    /**
+     * What to do when redButton is pressed.
+     */
+    private class RedButtonListener implements ActionListener {
+      public void actionPerformed(ActionEvent event) {
+      	dwg.setColor(Color.red); // Set default color of drawing to red.
+        	colorBox.show(dwg.getColor()); //Set color box to color of drawing object
+      	cmd = new ColorCmd();
+      	repaint();
+      }
+    }
+
+    /**
+     * What to do when greenButton is pressed.
+     */
+    private class GreenButtonListener implements ActionListener {
+      public void actionPerformed(ActionEvent event) {
+      	dwg.setColor(Color.green); // Set default color of drawing to green
+      	colorBox.show(dwg.getColor());// Set color box to color of drawing object
+      	cmd = new ColorCmd();
+      	repaint();
+      }
+    }
+
+    /**
+     * What to do when blueButton is pressed.
+     */
+    private class BlueButtonListener implements ActionListener {
+      public void actionPerformed(ActionEvent event) {
+      	dwg.setColor(Color.blue); // Set blue color of drawing to blue
+      	colorBox.show(dwg.getColor()); // Set color box to color of drawing object
+      	cmd = new ColorCmd();
+      	repaint();
+      }
     }
     
     /**
