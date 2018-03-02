@@ -1,7 +1,9 @@
 import java.awt.*;
-import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-import Editor.ColorIndicator;
+import javax.swing.*;
 
 public class GraphicsEditor extends javax.swing.JFrame {
 	
@@ -58,6 +60,66 @@ public class GraphicsEditor extends javax.swing.JFrame {
       public void show(Color color) {
         setBackground(color);
       }
+    }
+    
+    /** 
+     * CanvasPanel is the class upon which we actually draw.  It listens
+     * for mouse events and calls the appropriate method of the current
+     * command.
+     */ 
+    private class CanvasPanel extends JPanel implements MouseListener,
+        MouseMotionListener {
+      private static final long serialVersionUID = 0;
+      
+      /**
+       * Constructor just needs to set up the CanvasPanel as a listener.
+       */
+      public CanvasPanel() {
+      	addMouseListener(this);
+      	addMouseMotionListener(this);
+      }
+
+      /**
+       * Paint the whole drawing
+       * @page the Graphics object to draw on
+       */
+      public void paintComponent(Graphics page) {
+      	super.paintComponent(page); // execute the paint method of JPanel
+      	dwg.draw(page); // have the drawing draw itself
+      }
+
+      /**
+       * When the mouse is clicked, call the executeClick method of the
+       * current command.
+       */
+      public void mouseClicked(MouseEvent event) {
+      	cmd.executeClick(event.getPoint(), dwg);
+      	repaint();
+      }
+
+      /**
+       * When the mouse is pressed, call the executePress method of the
+       * current command.
+       */
+      public void mousePressed(MouseEvent event) {
+        cmd.executePress(event.getPoint(), dwg);
+        repaint();
+      }
+
+      /** 
+       * When the mouse is dragged, call the executeDrag method of the
+       * current command.
+       */
+      public void mouseDragged(MouseEvent event) {
+        cmd.executeDrag(event.getPoint(), dwg);
+        repaint();
+      }
+
+      // We don't care about the other mouse events.
+      public void mouseReleased(MouseEvent event) { }
+      public void mouseEntered(MouseEvent event) { }
+      public void mouseExited(MouseEvent event) { }
+      public void mouseMoved(MouseEvent event) { }
     }
     
 	public static void main(String[] args) {
