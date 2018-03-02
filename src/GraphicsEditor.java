@@ -15,6 +15,29 @@ public class GraphicsEditor extends javax.swing.JFrame {
 	private ColorIndicator colorBox; // a GUI component to show the current default color
 	
     public GraphicsEditor() {
+        cmd = new Command(); // all methods in Command are empty
+        dwg = new Drawing(initialColor); // make an empty drawing
+        
+        // The drawing will appear in a white CanvasPanel.
+        CanvasPanel canvasPanel = new CanvasPanel();
+        canvasPanel.setBackground(Color.white);
+        
+        // Make JButton objects for all the command buttons.
+        JButton rectButton = new JButton("Rectangle");
+        JButton ellipseButton = new JButton("Ellipse");
+        JButton lineButton = new JButton("Line");
+        JButton moveButton = new JButton("Move");
+        JButton deleteButton = new JButton("Delete");
+        JButton frontButton = new JButton("Front");
+        JButton backButton = new JButton("Back");
+        JButton exchangeButton = new JButton("Exchange");
+        JButton redButton = new JButton("Red");
+        JButton greenButton = new JButton("Green");
+        JButton blueButton = new JButton("Blue");
+        JButton undoButton = new JButton("Undo");
+        JButton redoButton = new JButton("Redo");
+        
+        
     		JFrame frame = new JFrame("Object-Oriented Graphical Editor");
         
     		frame.setLayout(new GridBagLayout());
