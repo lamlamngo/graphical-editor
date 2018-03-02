@@ -4,22 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
 import javax.swing.*;
-
-import Editor.BackButtonListener;
-import Editor.BlueButtonListener;
-import Editor.DeleteButtonListener;
-import Editor.EllipseButtonListener;
-import Editor.ExchangeButtonListener;
-import Editor.FrontButtonListener;
-import Editor.GreenButtonListener;
-import Editor.LineButtonListener;
-import Editor.MoveButtonListener;
-import Editor.RectButtonListener;
-import Editor.RedButtonListener;
-import Editor.RedoButtonListener;
-import Editor.UndoButtonListener;
 
 public class GraphicsEditor extends javax.swing.JFrame {
 	
@@ -67,6 +52,20 @@ public class GraphicsEditor extends javax.swing.JFrame {
         blueButton.addActionListener(new BlueButtonListener());
         undoButton.addActionListener(new UndoButtonListener());
         redoButton.addActionListener(new RedoButtonListener());
+        
+        // The command buttons will be arranged in 3 rows.  Each row will
+        // appear in its own JPanel, and the 3 JPanels will be stacked
+        // vertically.
+        JPanel shapePanel = new JPanel(); // holds buttons for adding shapes
+        JLabel shapeLabel = new JLabel("Add shape:");
+        shapePanel.setLayout(new FlowLayout());
+        shapePanel.add(shapeLabel);
+        rectButton.setBackground(Color.yellow);
+        ellipseButton.setBackground(Color.yellow);
+        lineButton.setBackground(Color.yellow);
+        shapePanel.add(rectButton);
+        shapePanel.add(ellipseButton);
+        shapePanel.add(lineButton);
         
         
     		JFrame frame = new JFrame("Object-Oriented Graphical Editor");
